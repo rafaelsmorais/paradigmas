@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-data = [{"nome": 'teclado logitech', "valor": 100.00, "estoque": 6 }]
+data = [{"nome": 'teclado logitech', "valor": 300.00, "estoque": 6 }, {"nome": 'mouse razer', "valor": 200.00, "estoque": 6 }]
 
 def cadastrar_produto(nome, valor, estoque):
     data.append({"nome": nome, "valor": valor, "estoque": estoque})
@@ -17,6 +17,13 @@ def buscar_produto(nome):
         if produto["nome"] == nome:
             resultado_busca = produto
     return resultado_busca
+
+def mais_caro():
+    mais_caro = {"valor": 0}
+    for produto in data:
+        if produto["valor"] > mais_caro["valor"]:
+            mais_caro = produto
+    print(mais_caro)
 
 def entrada_estoque(nome, estoque):
     produto = buscar_produto(nome)
