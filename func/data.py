@@ -1,0 +1,1 @@
+data = [{"nome": 'teclado logitech', "valor": 300.00, "estoque": 6 }, {"nome": 'mouse razer', "valor": 200.00, "estoque": 6 }]
