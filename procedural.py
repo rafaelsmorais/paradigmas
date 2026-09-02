@@ -18,13 +18,6 @@ def buscar_produto(nome):
             resultado_busca = produto
     return resultado_busca
 
-def mais_caro():
-    mais_caro = {"valor": 0}
-    for produto in data:
-        if produto["valor"] > mais_caro["valor"]:
-            mais_caro = produto
-    print(mais_caro)
-
 def entrada_estoque(nome, estoque):
     produto = buscar_produto(nome)
     if produto:
@@ -33,13 +26,31 @@ def entrada_estoque(nome, estoque):
 
 def saida_estoque(nome, estoque):
     produto = buscar_produto(nome)
-    if produto and produto["estoque"] >= estoque:
-        produto["estoque"] -= estoque
-        return produto
-    elif produto["estoque"] < estoque:
+
+    if not produto:
+        return "Produto não encontrado"
+
+    if produto["estoque"] < estoque:
         return "Estoque insuficiente"
-    else:
-        return produto
+
+    produto["estoque"] -= estoque
+    return produto
+    
+def calcular_valor_estoque():
+    total = 0
+
+    for produto in data:
+        valor = produto["valor"] * produto["estoque"]
+        total += valor
+
+    return total
+
+def mais_caro():
+    mais_caro = {"valor": 0}
+    for produto in data:
+        if produto["valor"] > mais_caro["valor"]:
+            mais_caro = produto
+    print(mais_caro)
 
 def main():
     continuar=True
@@ -89,6 +100,9 @@ def main():
                     print(novo_estoque)
                 else:
                     print('Produto não encontrado') 
+            case "6":
+                total = calcular_valor_estoque()
+                print(f"Valor total do estoque: R$ {total:.2f}")
             case "0":
                 continuar=False
 
