@@ -7,6 +7,11 @@ from func.entrada_estoque import entrada_estoque
 from func.saida_estoque import saida_estoque
 from func.calcular_valor_estoque import calcular_valor_estoque
 
+from func.maior_estoque import maior_estoque
+from func.menor_estoque import menor_estoque
+from func.mais_caro import mais_caro
+from func.estoque_baixo import estoque_baixo
+
 def main():
     continuar=True
     while(continuar):
@@ -17,6 +22,10 @@ def main():
         print('4 - Entrada de estoque')
         print('5 - Saída de estoque')
         print('6 - Mostrar valor total do estoque')
+        print('7 - Produto com maior estoque')
+        print('8 - Produto com menor estoque')
+        print('9 - Produto mais caro')
+        print('10 - Produtos com estoque baixo')
         print('0 - Sair')
         print()
         escolha = input('Digite sua opção: ')
@@ -44,7 +53,7 @@ def main():
                     print('\n\n')
             case "4":
                 nome = input('Digite o produto que deseja adicionar estoque: ')
-                estoque = input('Digite o quantiade de estoque entrando: ')
+                estoque = input('Digite o quantidade de estoque entrando: ')
                 novo_estoque = entrada_estoque(nome, int(estoque))
                 print("===== Novo Estoque =====")
                 if novo_estoque:
@@ -55,7 +64,7 @@ def main():
                     print('\n\n') 
             case "5":
                 nome = input('Digite o produto que deseja retirar estoque: ')
-                estoque = input('Digite o quantiade de estoque saindo: ')
+                estoque = input('Digite o quantidade de estoque saindo: ')
                 novo_estoque = saida_estoque(nome, int(estoque))
                 print("===== Novo Estoque =====")
                 if novo_estoque:
@@ -67,6 +76,36 @@ def main():
             case "6":
                 total = calcular_valor_estoque()
                 print(f"Valor total do estoque: R$ {total:.2f}")
+                print('\n\n')
+            case "7":
+                produto = maior_estoque()
+
+                print("===== Produto com maior estoque =====")
+                print(produto)
+                print('\n\n')
+            case "8":
+                produto = menor_estoque()
+
+                print("===== Produto com menor estoque =====")
+                print(produto)
+                print('\n\n')
+            case "9":
+                produto = mais_caro()
+
+                print("===== Produto mais caro =====")
+                print(produto)
+                print('\n\n')
+            case "10":
+                produtos = estoque_baixo()
+
+                print("===== Produtos com estoque baixo =====")
+
+                if produtos:
+                    for produto in produtos:
+                        print(produto)
+                else:
+                    print("Nenhum produto com estoque baixo")
+
                 print('\n\n')
             case "0":
                 continuar=False
